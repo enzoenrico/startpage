@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>~/startpage</title>
+    <title>~/start</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- google fonts -->
@@ -17,7 +17,18 @@
 
 <body>
     <header>
+
+        <div>
+            <p class="text" id="welcome"> Welcome home @ky0uko /> </p>
+        </div>
+
+
+        <div class="text">
+            <p id="quote"></p>
+        </div>
+
         <div id="img">
+            <!-- <img id="img1" src="image.jpg" /> -->
             <img src="image.gif" />
         </div>
     </header>
@@ -25,8 +36,8 @@
     <main>
         <div id="content">
             <div id="head">
-                <form action="https://duckduckgo.com/">
-                    <label for="q" autofocus>> find / </label>
+                <form id="search" action="https://duckduckgo.com/">
+                    <label for="q" autofocus>find=> </label>
                     <input type="text" name="q" autocomplete="off">
                 </form>
                 <div id="info">
@@ -36,56 +47,103 @@
             </div>
             <div id="links">
                 <section>
-                    <h3>section header</h3>
-                        <ul>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                        </ul>
+                    <h3>DevPages</h3>
+                    <ul>
+                        <li><a href="https://github.com">GitHub</a></li>
+                        <li><a href="https://stackoverflow.com">StackOverflow</a></li>
+                        <li><a href="https://reddit.com">Reddit</a></li>
+                    </ul>
                 </section>
                 <section>
-                    <h3>section header</h3>
-                        <ul>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                        </ul>
+                    <h3>Socials</h3>
+                    <ul>
+                        <li><a href="https://twitter.com">Twitter</a></li>
+                        <li><a href="https://instagram.com">Instagram</a></li>
+                        <li><a href="https://gmail.com">Gmail</a></li>
+                    </ul>
                 </section>
                 <section>
-                    <h3>section header</h3>
-                        <ul>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                        </ul>
+                    <h3>Entretainement</h3>
+                    <ul>
+                        <li><a href="https://crunchyroll.com">Crunchyroll</a></li>
+                        <li><a href="https://mangalivre.net">MangaLivre</a></li>
+                        <li><a href="https://monkeytype.com/">MonkeyType</a></li>
+                    </ul>
                 </section>
-                <section>
+                <!-- <section>
                     <h3>section header</h3>
-                        <ul>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                            <li><a href="https://example.com">website text</a></li>
-                        </ul>
-                </section>
+                    <ul>
+                        <li><a href="https://example.com">website text</a></li>
+                        <li><a href="https://example.com">website text</a></li>
+                        <li><a href="https://example.com">website text</a></li>
+                    </ul>
+                </section> -->
             </div>
         </div>
     </main>
-    <footer>
-        <a href="https://github.com/eaaasun/startpage">Github</a>
-    </footer>
     <script type="module">
+        const quote = true;
+
+        //Quote generator
+        //Thanks for the reference code (whoever this code is from)
+        var quote_element = document.getElementById('quote');
+
+        if (quote) {
+            const quote_link = `https://api.quotable.io/random`
+            console.log(quote_link);
+
+            var getJsonQuote = (url, callback) => {
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', url, true);
+                xhr.responseType = 'json';
+                xhr.onload = () => {
+                    var status = xhr.status;
+
+                    if (status === 200) {
+                        console.log(status);
+                        callback(null, xhr.response)
+                        quote_element.innerHTML(xhr.response)
+                    }
+
+                    if (status !== 200) {
+                        callback("Erro, contate o administrador do sistema", xhr.response)
+                        console.error();
+
+                    }
+
+
+                }
+
+                xhr.send();
+            }
+
+            getJsonQuote(quote_link, (err, data) => {
+                if (err !== null) {
+                    quote_element.innerText = "Erro!"
+                }
+
+                else {
+                    var quote = data.content;
+                    var author = data.author;
+
+                    quote_element.innerHTML = `"${quote}" \n -${author}`
+                }
+            })
+
+        }
+
+
         // ----- CHANGE THESE VARIABLES
 
+
         // Do you want to show the weather?
-        const weather = true;
+        const weather = false;
         // Do you want animations?
         const animated = true;
 
         // Read the documentation for setting the weather API key
-        const apiKey = "[API KEY]";
-        const lat = 40.7127861;
-        const lon = -74.0134275;
-        const units = "imperial";
+
 
         // ----- DON'T TOUCH ANYTHING BELOW THIS UNLESS YOU KNOW WHAT YOU'RE DOING
 
@@ -104,7 +162,7 @@
                 apiKey;
             console.log(apiLink);
             // grabs json data from url, thanks https://stackoverflow.com/a/35970894
-            var getJSON = function (url, callback) {
+            var getJsonQuote = function (url, callback) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", url, true);
                 xhr.responseType = "json";
@@ -112,7 +170,13 @@
                     var status = xhr.status;
                     if (status === 200) {
                         callback(null, xhr.response);
-                    } else {
+                    }
+
+                    if (status === 401) {
+                        callback('Não Autorizado', xhr.response);
+                    }
+
+                    else {
                         callback(status, xhr.response);
                     }
                 };
@@ -150,7 +214,7 @@
             function playAnimation() {
                 var tl = anime.timeline({
                     easing: "easeInOutExpo",
-                    duration: 2000,
+                    duration: 1500,
                 });
 
                 tl.add({
@@ -167,7 +231,7 @@
                     )
                     .add(
                         {
-                            targets: "main *",
+                            targets: "main *, .text",
                             opacity: [0, 1],
                             translateY: [10, 0],
                             delay: anime.stagger(15),
@@ -179,6 +243,7 @@
             window.onload = function () {
                 document.querySelectorAll("*").forEach(el => el.style.opacity = 1);
                 playAnimation();
+                document.getElementById('search').focus
             }
         }
     </script>

@@ -1,24 +1,25 @@
 @import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro);
 
 :root {
-  --color-bg: #2e3440;
-  --color-bg-light: #3b4252;
-  --color-fg: #d8dee9;
+  --color-bg: #272727;
+  --color-bg-light:#27272722;
+  --color-fg: #FF9FE5;
 
-  --color-link-hover: #8fbcbb;
-  --color-link: #81a1c1;
+  --color-link-hover: #FFD4D4;
+  --color-link: #FF858D;
 
-  --font-family: "Source Code Pro", monospace;
+  --font-family: "JetBrains Mono", monospace;
 }
 
 * {
   box-sizing: border-box;
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 html,
 body {
   overflow: hidden;
+  /* background-image: url('/background.jpg'); */
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-family);
@@ -34,17 +35,51 @@ header {
   position: absolute;
 }
 
+.text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* top: 20%; */
+}
+
+.text #quote{
+  
+  font-size: 15px;
+  margin: 20px;
+
+  border: 1px solid #FF9FE5;
+  padding: 15px;
+  border-radius: 15px;
+
+}
+
 header div#img {
   width: 60%;
-  height: 100%;
-  padding: auto;
+  height: 70%;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
 }
 
 header div#img img {
+  transition: 0.5s ease-out;
   width: 25vw;
+  /* padding: 15px; */
+  border-radius: 15px;
+}
+
+/* header div#img #img1 {
+  height: 20vw;
+  object-fit: cover;
+} */
+
+header div#img img:hover{
+  width: 28vw;
+  transition: 0.5s ease-in;
+  /* border:2px solid white; */
+  border-radius: 50px;
 }
 
 main {
@@ -85,15 +120,16 @@ main #links section {
 }
 
 form {
-  font-size: 2.15vw;
+  font-size: 2.2vw;
   white-space: nowrap;
 }
 
 form input {
-  width: 75%;
+  width: 65%;
   display: inline-block;
   border: none;
   background-color: var(--color-bg-light);
+  border: 1px solid;
   padding: 10px;
   color: var(--color-fg);
   font-family: var(--font-family);
