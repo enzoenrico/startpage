@@ -37,7 +37,7 @@
         <div id="content">
             <div id="head">
                 <form id="search" action="https://duckduckgo.com/">
-                    <label for="q" autofocus>find=> </label>
+                    <label for="q" autofocus>$ find=> </label>
                     <input type="text" name="q" autocomplete="off">
                 </form>
                 <div id="info">
@@ -130,6 +130,21 @@
                     quote_element.innerHTML = `"${quote}" \n -${author}`
                 }
             })
+
+            // var quote_div = document.getElementById('quote_div')
+
+            // quote_div.onclick(()=>{
+            //     document.execCommand('copy')
+            // })
+
+            // quote_div.addEventListener("copy", (event) =>{
+            //     event.preventDefault();
+            //     if(event.clipboardData){
+            //         event.clipboardData.setData("text/plain", quote_element.textContent)
+            //         console.log('Copiado!' + quote_element.textContent)
+            //     }                
+            // })
+
 
         }
 
